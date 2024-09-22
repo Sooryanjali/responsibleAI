@@ -1,0 +1,104 @@
+<!-- {% extends 'main.html' %} -->
+{% load static %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/home.scss' %}">
+<!-- Icons -->
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+<!-- Font-awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Custom styles -->
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    nav {
+        background-color: #f8f9fa;
+        padding: 10px;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .create button {
+        background-color: #6c63ff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+    .create button a {
+        text-decoration: none;
+        color: white;
+    }
+    .profile-photo img {
+        width: 50px;
+        border-radius: 50%;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- NAVIGATION BAR -->
+<nav>
+    <div class="container">
+        <div class="log">
+            <img src="{% static 'images/signup.png' %}" alt="Logo" style="height:75px; cursor:pointer;">
+        </div>
+
+        <!-- Search bar -->
+        <form action="/search" method="POST">
+            {% csrf_token %}
+            <div class="search-bar">
+                <input type="search" placeholder="Search for other users" name="username">
+                <button type="submit"><i class="uil uil-search"></i></button>
+            </div>
+        </form>
+
+        <div class="create">
+            <a href="{% url 'signup' %}">Signup</a>
+            <a href="{% url 'login' %}">Login</a>
+            <button>
+                <a href="{% url 'home' %}">Create Post</a>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main style="background-color: rgb(244, 234, 234); padding-top: 40px;">
+    <div class="container">
+        <!-- LEFT SECTION (User Profile) -->
+        <div class="left">
+            <div class="profile-photo">
+                <img src="{% static 'images/usericon.png' %}" alt="User Profile">
+            </div>
+            <h4>Username</h4>
+        </div>
+
+        <!-- MIDDLE SECTION (Posts or Feed) -->
+        <div class="middle">
+            <h2>Welcome to the homepage!</h2>
+            <p>No posts yet. Create a new post!</p>
+        </div>
+
+        <!-- RIGHT SECTION (User Suggestions) -->
+        <div class="right">
+            <h4>User Suggestions</h4>
+            <div class="request">
+                <div class="profile-photo">
+                    <img src="{% static 'images/usericon.png' %}" alt="Suggestion Profile">
+                </div>
+                <div>
+                    <h5>Suggested User</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
