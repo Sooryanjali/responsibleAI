@@ -5,4 +5,5 @@ urlpatterns = [
     path("signup/", views.signup, name="signup"),  # Define a path for signup
     path("", views.home, name="home"),  # Keep this if you want to route root to signup
     path("login/", views.login, name="login"),
+    path('logout/', views.logout,name='logout'),
 ]
